@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChopperMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.005f;
+    [SerializeField] private float speed = 0.01f;
     [SerializeField] private float x = 0;
     [SerializeField] private float y = 0;
     [SerializeField] private int maxSpeed = 0;
@@ -18,5 +18,9 @@ public class ChopperMovement : MonoBehaviour
         move = Vector3.ClampMagnitude(move, 1f);
 
         gameObject.transform.position += (move * speed);
+        if (gameObject.transform.position.x > 6) gameObject.transform.position = new Vector3(6, gameObject.transform.position.y, gameObject.transform.position.z);
+        if (gameObject.transform.position.x < -6) gameObject.transform.position = new Vector3(-6, gameObject.transform.position.y, gameObject.transform.position.z);
+        if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
+        if (gameObject.transform.position.y < -3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, -3.5f, gameObject.transform.position.z);
     }
 }
