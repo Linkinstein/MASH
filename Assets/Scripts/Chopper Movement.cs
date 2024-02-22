@@ -23,4 +23,20 @@ public class ChopperMovement : MonoBehaviour
         if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
         if (gameObject.transform.position.y < -3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, -3.5f, gameObject.transform.position.z);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Tree"))
+        {
+            Debug.Log("Tree!");
+        }
+        if (other.gameObject.CompareTag("Soldier"))
+        {
+            Debug.Log("Soldier!");
+        }
+        if (other.gameObject.CompareTag("Tent"))
+        {
+            Debug.Log("Tent!");
+        }
+    }
 }
