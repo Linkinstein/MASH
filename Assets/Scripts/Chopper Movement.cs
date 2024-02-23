@@ -34,7 +34,7 @@ public class ChopperMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Tree"))
         {
-            //playing = false;
+            playing = false;
         }
         if (other.gameObject.CompareTag("Soldier"))
         {
