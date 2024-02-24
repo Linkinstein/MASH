@@ -1,17 +1,27 @@
 
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChopperMovement : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI savedText;
+    [SerializeField] private TextMeshProUGUI holdingText;
+    [SerializeField] private GameObject soldierParentGO;
+    [SerializeField] private GameObject gameOverGO;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+
     [SerializeField] private float speed = 0.01f;
     [SerializeField] private float x = 0;
     [SerializeField] private float y = 0;
 
-    [SerializeField] public Boolean playing = true;
     [SerializeField] public int holding = 0;
 
-    // Update is called once per frame
+    [SerializeField] public int saved = 0;
+
+    [SerializeField] public Boolean playing = true;
+
     void Update()
     {
         if (playing)
@@ -28,6 +38,17 @@ public class ChopperMovement : MonoBehaviour
             if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
             if (gameObject.transform.position.y < -3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, -3.5f, gameObject.transform.position.z);
         }
+        if (saved >= 9)
+        {
+            playing = false;
+            GameOver("Mission Complete");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,14 +56,31 @@ public class ChopperMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Tree"))
         {
             playing = false;
+            GameOver("Mission Failed");
         }
         if (other.gameObject.CompareTag("Soldier"))
         {
-            Debug.Log("Soldier!");
+            if (holding < 3)
+            {
+                other.gameObject.SetActive(false);
+                holding++;
+                holdingText.SetText(""+holding);
+            }
         }
         if (other.gameObject.CompareTag("Tent"))
         {
-            Debug.Log("Tent!");
+            saved += holding;
+            savedText.SetText("" + saved);
+            holding = 0;
+            holdingText.SetText("" + holding);
         }
     }
+
+    void GameOver(string Text)
+    {
+        while (gameOverGO.transform.localScale.y < 2)
+            gameOverGO.transform.localScale = new Vector3(gameOverGO.transform.localScale.x, gameOverGO.transform.localScale.y + Time.deltaTime*0.001f, gameOverGO.transform.localScale.z);
+        gameOverText.SetText(Text);
+    }
+
 }
