@@ -1,5 +1,4 @@
 
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +11,11 @@ public class ChopperMovement : MonoBehaviour
     [SerializeField] private GameObject gameOverGO;
     [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private GameObject GMGO;
+    [SerializeField] public AudioClip[] thanks;
+    [SerializeField] public AudioClip missionComplete;
+    [SerializeField] public AudioClip missionFailed;
+    [SerializeField] public AudioClip maxCap;
+    [SerializeField] public AudioSource audioSource;
 
     [SerializeField] private float speed = 0.01f;
     [SerializeField] private float x = 0;
@@ -21,7 +25,12 @@ public class ChopperMovement : MonoBehaviour
 
     [SerializeField] public int saved = 0;
 
-    [SerializeField] public Boolean playing = true;
+    [SerializeField] public bool playing = true;
+
+    private void Start()
+    {
+        audioSource = this.gameObject.GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -38,12 +47,16 @@ public class ChopperMovement : MonoBehaviour
             if (gameObject.transform.position.x < -6) gameObject.transform.position = new Vector3(-6, gameObject.transform.position.y, gameObject.transform.position.z);
             if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
             if (gameObject.transform.position.y < -3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, -3.5f, gameObject.transform.position.z);
-        }
-        if (saved >= 9)
-        {
-            playing = false;
-            GameOver("Mission Complete");
-            GMGO.GetComponent<GameManager>().record();
+        
+            if (saved >= 9)
+            {
+                audioSource.clip = missionComplete;
+                audioSource.Play();
+                GameOver("Mission Complete");
+                GMGO.GetComponent<GameManager>().record();
+                playing = false;
+
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -59,6 +72,8 @@ public class ChopperMovement : MonoBehaviour
         {
             playing = false;
             GameOver("Mission Failed");
+            audioSource.clip = missionFailed;
+            audioSource.Play();
         }
         if (other.gameObject.CompareTag("Soldier"))
         {
@@ -66,7 +81,14 @@ public class ChopperMovement : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 holding++;
-                holdingText.SetText(""+holding);
+                holdingText.SetText("" + holding);
+                audioSource.clip = thanks[Random.Range(0, 4)];
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = maxCap;
+                audioSource.Play();
             }
         }
         if (other.gameObject.CompareTag("Tent"))
