@@ -11,6 +11,7 @@ public class ChopperMovement : MonoBehaviour
     [SerializeField] private GameObject soldierParentGO;
     [SerializeField] private GameObject gameOverGO;
     [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private GameObject GMGO;
 
     [SerializeField] private float speed = 0.01f;
     [SerializeField] private float x = 0;
@@ -22,7 +23,7 @@ public class ChopperMovement : MonoBehaviour
 
     [SerializeField] public Boolean playing = true;
 
-    void Update()
+    private void Update()
     {
         if (playing)
         {
@@ -42,6 +43,7 @@ public class ChopperMovement : MonoBehaviour
         {
             playing = false;
             GameOver("Mission Complete");
+            GMGO.GetComponent<GameManager>().record();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,7 +53,7 @@ public class ChopperMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Tree"))
         {
@@ -76,7 +78,7 @@ public class ChopperMovement : MonoBehaviour
         }
     }
 
-    void GameOver(string Text)
+    private void GameOver(string Text)
     {
         while (gameOverGO.transform.localScale.y < 2)
             gameOverGO.transform.localScale = new Vector3(gameOverGO.transform.localScale.x, gameOverGO.transform.localScale.y + Time.deltaTime*0.001f, gameOverGO.transform.localScale.z);
