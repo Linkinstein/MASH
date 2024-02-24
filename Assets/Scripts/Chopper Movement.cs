@@ -1,5 +1,6 @@
 
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class ChopperMovement : MonoBehaviour
     [SerializeField] public AudioClip missionFailed;
     [SerializeField] public AudioClip maxCap;
     [SerializeField] public AudioSource audioSource;
+    [SerializeField] public Animator anim;
 
     [SerializeField] private float speed = 0.01f;
     [SerializeField] private float x = 0;
@@ -47,7 +49,9 @@ public class ChopperMovement : MonoBehaviour
             if (gameObject.transform.position.x < -6) gameObject.transform.position = new Vector3(-6, gameObject.transform.position.y, gameObject.transform.position.z);
             if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
             if (gameObject.transform.position.y < -3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, -3.5f, gameObject.transform.position.z);
-        
+
+            anim.SetFloat("dir",x);
+
             if (saved >= 9)
             {
                 audioSource.clip = missionComplete;
@@ -68,35 +72,38 @@ public class ChopperMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Tree"))
+        if (playing)
         {
-            playing = false;
-            GameOver("Mission Failed");
-            audioSource.clip = missionFailed;
-            audioSource.Play();
-        }
-        if (other.gameObject.CompareTag("Soldier"))
-        {
-            if (holding < 3)
+            if (other.gameObject.CompareTag("Tree"))
             {
-                other.gameObject.SetActive(false);
-                holding++;
+                playing = false;
+                GameOver("Mission Failed");
+                audioSource.clip = missionFailed;
+                audioSource.Play();
+            }
+            if (other.gameObject.CompareTag("Soldier"))
+            {
+                if (holding < 3)
+                {
+                    other.gameObject.SetActive(false);
+                    holding++;
+                    holdingText.SetText("" + holding);
+                    audioSource.clip = thanks[Random.Range(0, 4)];
+                    audioSource.Play();
+                }
+                else
+                {
+                    audioSource.clip = maxCap;
+                    audioSource.Play();
+                }
+            }
+            if (other.gameObject.CompareTag("Tent"))
+            {
+                saved += holding;
+                savedText.SetText("" + saved);
+                holding = 0;
                 holdingText.SetText("" + holding);
-                audioSource.clip = thanks[Random.Range(0, 4)];
-                audioSource.Play();
             }
-            else
-            {
-                audioSource.clip = maxCap;
-                audioSource.Play();
-            }
-        }
-        if (other.gameObject.CompareTag("Tent"))
-        {
-            saved += holding;
-            savedText.SetText("" + saved);
-            holding = 0;
-            holdingText.SetText("" + holding);
         }
     }
 

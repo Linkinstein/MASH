@@ -5219,6 +5219,7 @@ GameObject:
   - component: {fileID: 1251114769}
   - component: {fileID: 1251114770}
   - component: {fileID: 1251114771}
+  - component: {fileID: 1251114772}
   m_Layer: 0
   m_Name: Helicopter
   m_TagString: Player
@@ -5267,7 +5268,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7cb144ec983523845a63f43b12cb8fbf, type: 3}
+  m_Sprite: {fileID: -1325550560, guid: 7cb144ec983523845a63f43b12cb8fbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5321,6 +5322,7 @@ MonoBehaviour:
   missionFailed: {fileID: 8300000, guid: 032593a8f3799a84fa7e89a278345070, type: 3}
   maxCap: {fileID: 8300000, guid: 727005c02647eb4469a0e03dbd0027d7, type: 3}
   audioSource: {fileID: 1251114771}
+  anim: {fileID: 0}
   speed: 0.005
   x: 0
   y: 0
@@ -5346,10 +5348,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2616878
-  m_Height: 1.0011225
+  m_Radius: 0.2567016
+  m_Height: 0.96871114
   m_Direction: 0
-  m_Center: {x: -0.015834332, y: 0.051107794, z: 0}
+  m_Center: {x: -0.01458776, y: 0.068560004, z: -0}
 --- !u!54 &1251114770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5473,6 +5475,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1251114772
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251114765}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7eeb8ff1cb5364f4b8b8a31101544c52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1254094094
 PrefabInstance:
   m_ObjectHideFlags: 0
