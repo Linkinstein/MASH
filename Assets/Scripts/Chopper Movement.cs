@@ -17,6 +17,9 @@ public class ChopperMovement : MonoBehaviour
     [SerializeField] public AudioClip maxCap;
     [SerializeField] public AudioSource audioSource;
     [SerializeField] public Animator anim;
+    [SerializeField] private GameObject treeParentGO;
+    [SerializeField] private GameObject boundaryParentGO;
+    [SerializeField] private GameObject turretParentGO;
 
     private float speed = (float)0.5 * Screen.width;
     [SerializeField] private float x = 0;
@@ -72,6 +75,13 @@ public class ChopperMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menu");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            treeParentGO.SetActive(!treeParentGO.activeSelf);
+            boundaryParentGO.SetActive(!boundaryParentGO.activeSelf);
+            turretParentGO.SetActive(!turretParentGO.activeSelf);
         }
     }
 

@@ -13,7 +13,8 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        float bestTime = PlayerPrefs.GetFloat("hiscore");
+        JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
+        float bestTime = prefs.GetFloat("hiscore");
         int minutes = Mathf.FloorToInt(bestTime / 60);
         int seconds = Mathf.FloorToInt(bestTime % 60);
         time.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));

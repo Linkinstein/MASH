@@ -34,9 +34,22 @@ public class GameManager : MonoBehaviour
     public void record()
     {
         playing = false;
-        if (timer < PlayerPrefs.GetFloat("hiscore") && PlayerPrefs.GetFloat("hiscore") > 0)
+        JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
+        float bestTime = prefs.GetFloat("hiscore");
+        if (prefs.HasKey("hiscore"))
         {
-            PlayerPrefs.SetFloat("hiscore", timer);
+            if (timer < prefs.GetFloat("hiscore"))
+            {
+                prefs.SetFloat("hiscore", timer);
+                prefs.Save();
+                highscoreGO.SetActive(true);
+
+            }
+        }
+        else
+        {
+            prefs.SetFloat("hiscore", timer);
+            prefs.Save();
             highscoreGO.SetActive(true);
         }
     }

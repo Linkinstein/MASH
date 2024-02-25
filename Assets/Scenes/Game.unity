@@ -5323,7 +5323,9 @@ MonoBehaviour:
   maxCap: {fileID: 8300000, guid: 727005c02647eb4469a0e03dbd0027d7, type: 3}
   audioSource: {fileID: 1251114771}
   anim: {fileID: 1251114772}
-  speed: 0.005
+  treeParentGO: {fileID: 1559980799}
+  boundaryParentGO: {fileID: 54675568}
+  turretParentGO: {fileID: 1667142436}
   x: 0
   y: 0
   holding: 0
