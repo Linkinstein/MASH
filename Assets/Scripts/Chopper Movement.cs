@@ -1,6 +1,5 @@
 
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +18,7 @@ public class ChopperMovement : MonoBehaviour
     [SerializeField] public AudioSource audioSource;
     [SerializeField] public Animator anim;
 
-    [SerializeField] private float speed = 0.01f;
+    private float speed = (float)0.5 * Screen.width;
     [SerializeField] private float x = 0;
     [SerializeField] private float y = 0;
 
@@ -31,6 +30,7 @@ public class ChopperMovement : MonoBehaviour
 
     private void Start()
     {
+        speed = (float)0.001 * Screen.width;
         audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
@@ -44,7 +44,7 @@ public class ChopperMovement : MonoBehaviour
             Vector3 move = new Vector3(x, y, 0);
             move = Vector3.ClampMagnitude(move, 1f);
 
-            gameObject.transform.position += (move * speed);
+            gameObject.transform.position += (move * speed * Time.deltaTime);
             if (gameObject.transform.position.x > 6) gameObject.transform.position = new Vector3(6, gameObject.transform.position.y, gameObject.transform.position.z);
             if (gameObject.transform.position.x < -6) gameObject.transform.position = new Vector3(-6, gameObject.transform.position.y, gameObject.transform.position.z);
             if (gameObject.transform.position.y > 3.5) gameObject.transform.position = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
@@ -67,6 +67,11 @@ public class ChopperMovement : MonoBehaviour
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
         }
     }
 

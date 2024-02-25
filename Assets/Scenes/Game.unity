@@ -2042,7 +2042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21273239
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2384,7 +2384,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.6792453, g: 0.4486041, b: 0.33641866, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4465,7 +4465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21273239
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5322,7 +5322,7 @@ MonoBehaviour:
   missionFailed: {fileID: 8300000, guid: 032593a8f3799a84fa7e89a278345070, type: 3}
   maxCap: {fileID: 8300000, guid: 727005c02647eb4469a0e03dbd0027d7, type: 3}
   audioSource: {fileID: 1251114771}
-  anim: {fileID: 0}
+  anim: {fileID: 1251114772}
   speed: 0.005
   x: 0
   y: 0
@@ -8274,7 +8274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21273239
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8340,7 +8340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21273239
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: 3292812650681150884, guid: 50e311acf30b5a94cb2ac3ed9467e21f, type: 3}
       propertyPath: m_LocalRotation.w
